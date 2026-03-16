@@ -45,3 +45,18 @@ def evaluate(labels, features, subset):
 
     return correct / n * 100
 
+# Forward Selection
+def forward(labels, features):
+
+    n = features.shape[1]
+    current = []
+    best_set, best_acc = [], 0
+
+    print("\nBeginning Forward Selection\n")
+
+    for i in range(n):
+
+    feature, best = None, 0
+
+        for f in range(n):
+
