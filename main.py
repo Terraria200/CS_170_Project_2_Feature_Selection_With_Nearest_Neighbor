@@ -77,5 +77,16 @@ def forward(labels, features):
 
     print(f"Finished search. Best subset {[x+1 for x in best_set]} accuracy {best_acc:.2f}%")
 
+# Backward Elimination
+def backward(labels, features):
 
+    current = list(range(features.shape[1]))
+
+    print("\nBeginning Backward Elimination\n")
+
+    while len(current) > 1:
+
+        feature, best = None, 0
+
+        for f in current:
 
