@@ -90,3 +90,15 @@ def backward(labels, features):
 
         for f in current:
 
+                        subset = [x for x in current if x != f]
+            acc = evaluate(labels, features, subset)
+
+            print(f"Using feature(s) {[x+1 for x in subset]} accuracy {acc:.2f}%")
+
+            if acc > best:
+                best, feature = acc, f
+
+        current.remove(feature)
+        print(f"Feature set {[x+1 for x in current]} best, accuracy {best:.2f}%\n")
+
+
