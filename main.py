@@ -60,3 +60,22 @@ def forward(labels, features):
 
         for f in range(n):
 
+                        if f not in current:
+                subset = current + [f]
+                acc = evaluate(labels, features, subset)
+
+                print(f"Using feature(s) {[x+1 for x in subset]} accuracy {acc:.2f}%")
+
+                if acc > best:
+                    best, feature = acc, f
+
+        current.append(feature)
+        print(f"Feature set {[x+1 for x in current]} best, accuracy {best:.2f}%\n")
+
+        if best > best_acc:
+            best_set, best_acc = current.copy(), best
+
+    print(f"Finished search. Best subset {[x+1 for x in best_set]} accuracy {best_acc:.2f}%")
+
+
+
