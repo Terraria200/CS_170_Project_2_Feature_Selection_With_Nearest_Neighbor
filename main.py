@@ -20,3 +20,28 @@ if choice == 1:
     forward(labels, features)
 else:
     backward(labels, features)
+
+# Leave-one-out nearest neighbor accuracy
+def evaluate(labels, features, subset):
+
+    correct = 0
+    n = len(labels)
+
+    for i in range(n):
+
+        test = features[i, subset]
+        best_dist = float("inf")
+        best_label = None
+
+        for k in range(n):
+            if i != k:
+                dist = np.sqrt(np.sum((test - features[k, subset])**2))
+                if dist < best_dist:
+                    best_dist = dist
+                    best_label = labels[k]
+
+        if best_label == labels[i]:
+            correct += 1
+
+    return correct / n * 100
+
